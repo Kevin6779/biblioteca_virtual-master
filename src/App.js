@@ -1,32 +1,37 @@
 import React from "react";
-import "./App.css"
-import {
-  Navbar,
-  Nav
-} from "react-bootstrap";
+import "./App.css";
+import { Navbar, Nav, Image } from "react-bootstrap";
 import HomeView from "./views/HomeView";
-import  LibrosView  from "./views/LibrosView";
-import AgregarLibroView from "./views/AgregarLibroView"
-import {BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import LibrosView from "./views/LibrosView";
+import AgregarLibroView from "./views/AgregarLibroView";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Logo from './assets/Imagenes/logo1.jpg';
 function App() {
-    return (
+  return (
     <Router>
-      <Navbar bg="dark" expand="lg">
-        <Navbar.Brand href="#" style={{color:"white"}} >Biblioteca Virtual</Navbar.Brand>
+      <Navbar expand="lg" className="navbar-custom">
+        <Navbar.Brand href="#"className="custom-link">
+        <Image src={Logo} />
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Link style={{color:"white"}} to="/">|Home|</Link>
-            <Link style={{color:"white"}} to="/libros">|Libros|</Link>
-            <Link style={{color:"white"}} to="/generos">|AgregarLibro|</Link>
-
+            <Link className="custom-link" to="/">
+              <h4>INICIO</h4>
+            </Link>
+            <Link className="custom-link" to="/libros">
+            <h4>LIBROS</h4>
+            </Link>
+            <Link className="custom-link" to="/generos">
+            <h4>AÑADIR LIBRO</h4>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
       <Switch>
-          <Route exact= {true} path = "/" component ={HomeView}/>
-          <Route path = "/libros" component ={LibrosView}/>
-          <Route path = "/generos" component ={AgregarLibroView}/>
+        <Route exact={true} path="/" component={HomeView} />
+        <Route path="/libros" component={LibrosView} />
+        <Route path="/generos" component={AgregarLibroView} />
       </Switch>
     </Router>
   );
