@@ -4,6 +4,7 @@ import LibroService from "../services/LibroService";
 import CardLibro from "../components/CardLibro";
 import Swal from 'sweetalert2';
 
+
 const LibrosView = () => {
   const [libros, setLibro] = useState(null);
 
@@ -32,6 +33,7 @@ const LibrosView = () => {
       console.log(error);
     }
   };
+
   const handleDeleteLibro = (id) => {
     LibroService.delete(id).then(
       (resp) => {
@@ -42,6 +44,7 @@ const LibrosView = () => {
       }
     );
   };
+  
   const handledRenderLibros = () => {
     if (!libros || libros.length === 0) {
       return <div>No existen datos</div>;
@@ -56,12 +59,18 @@ const LibrosView = () => {
     console.log(rows);
     const arrayRows = [...Array(rows)];
     return arrayRows.map((row, index) => {
+   
       return (
+
+       
         
+        
+        <p>                          
         <CardDeck key={index}>
+         
           {libros 
             .slice(
-              index === 0 ? index : index * columns,
+              index === 0 ? index : index * columns,              
               index === 0 ? columns : index * columns + columns
             )
             .map((libro, index) => {
@@ -76,14 +85,15 @@ const LibrosView = () => {
                   paginas={libro.paginas}
                   disponibilidad={libro.disponibilidad}
                   handleDeleteLibro={handleDeleteLibro}
+                  
                 />
               );
             })}
-        </CardDeck>
+        </CardDeck></p>
       );
     });
   };
-  return <Container>{handledRenderLibros()}</Container>;
+  return <Container>{handledRenderLibros()} </Container>;
   /*  return (
     <div className="container">
        <div><ul>{ libros && libros.map((libro, index)=>{ 

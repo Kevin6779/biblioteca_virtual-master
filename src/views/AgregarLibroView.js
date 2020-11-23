@@ -42,9 +42,13 @@ function AgregarLibroView() {
         })
     }
 
+    
+
     return (
+        
         <Container>
-            <Button onClick={handleOpenModal} variant="primary">Agregar Libro</Button>
+            <p></p>
+            <Button className="button" onClick={handleOpenModal} variant="dark"><h5>AGREGAR LIBRO</h5></Button>
             {
                 show &&
                 <CreateLibroModal
@@ -52,7 +56,8 @@ function AgregarLibroView() {
                     handleClose={handleClose}
                     handleSaveLibro={handleSaveLibro} />
             }
-        </Container>
+            <p></p>
+           </Container>
     );
 }
 

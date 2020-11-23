@@ -10,7 +10,7 @@ function App() {
   return (
     <Router>
       <Navbar expand="lg" className="navbar-custom">
-        <Navbar.Brand href="#"className="custom-link">
+        <Navbar.Brand href=""className="custom-link">
         <Image src={Logo} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -23,7 +23,7 @@ function App() {
             <h4>LIBROS</h4>
             </Link>
             <Link className="custom-link" to="/generos">
-            <h4>AÑADIR LIBRO</h4>
+            <h4>AGREGAR LIBRO</h4>
             </Link>
           </Nav>
         </Navbar.Collapse>

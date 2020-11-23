@@ -8,8 +8,9 @@ import {
   FormControl,
 } from "react-bootstrap";
 import GeneroService from "../services/GeneroService";
+import LibroService from "../services/LibroService";
 
-function CreateLibroModal(props) {
+function UpdateLibroModal(props) {
   const { show, handleClose } = props;
 
   const [generos, setGeneros] = useState(null);
@@ -73,7 +74,7 @@ function CreateLibroModal(props) {
   return (
     <Modal backdrop="static" show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Agregar Libro</Modal.Title>
+        <Modal.Title>Modificar Libro</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
@@ -147,7 +148,7 @@ function CreateLibroModal(props) {
         </Button>
         <Button
                     variant="primary"
-                    onClick={() => props.handleSaveLibro({
+                    onClick={() => props.handleUpdateLibro({
                         nombre,
                         autor,
                         publicacion,
@@ -160,10 +161,10 @@ function CreateLibroModal(props) {
                     })}
                     disabled={!nombre || !autor || !publicacion || !paginas
                         || !genero || !disponibilidad}>
-                    Guardar
+                    Actualizar
           </Button>
       </Modal.Footer>
     </Modal>
   );
 }
-export default CreateLibroModal;
+export default UpdateLibroModal;
