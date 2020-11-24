@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+  import React, { useState, useEffect } from "react";
 import {
   Modal,
   Button,
@@ -105,7 +105,7 @@ function CreateLibroModal(props) {
               {generos &&
                 generos.length > 0 &&
                 generos.map((genero, index) => {
-                  return <option value={genero.id}>{genero.nombre}</option>;
+                  return <option value={index} value={genero.id}>{genero.nombre}</option>;
                 })}
             </FormControl>
           </FormGroup>

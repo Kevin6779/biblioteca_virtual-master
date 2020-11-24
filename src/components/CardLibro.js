@@ -7,39 +7,21 @@ import Swal from 'sweetalert2';
 
 
 function CardLibro(props) {
-    const {nombre,autor,genero,fecha,paginas,id} = props;
+    const {nombre,autor,genero,fecha,paginas,id,disponibilidad} = props;
     const [show, setShow] = useState(false);
 
     useEffect(() => {
       console.log('nuevo estado');
-      console.log(id);
   }, [show]);
 
-   /* function update (id){
-      console.log(id);
-    }*/
-
-    const handleUpdateLibro = (id) => {
-      Swal.fire({
-         
-          icon: 'success',
-          text: 'Libro Actualizado'
-      });
-      
-      LibroService.update(id)
-        .then((resp) => {
-          Swal.close();
+    const handleUpdateLibro = (id,libro) => {      
+      LibroService.update(id,libro).then((resp) => {        
           console.log(resp);
           handleClose();
       }, (err) => {
-          Swal.close();
+        
           console.log(err);
-          Swal.fire({
-              title: 'Error',
-              icon: 'error',
-              text: 'Error    '
-          });
-      })
+        })
   }
 
     const handleClose = () => {
@@ -65,17 +47,21 @@ function CardLibro(props) {
           <strong>Publicación: </strong>{fecha}
           <br/>
           <strong>Paginas: </strong>{paginas}
+          <br/>
+          <strong>Disponibilidad: </strong>{disponibilidad}
         </Card.Text>
       </Card.Body>
       <Card.Footer className="text-muted">
-      <Button  variant="dark" onClick={handleOpenModal}  /*onClick={()=>update(id)}*/
+      <Button  variant="dark" onClick={handleOpenModal}  
      >Actualizar</Button>
        {
                 show &&
                 <UpdateLibroModal
                     show={show}
                     handleClose={handleClose} 
-                    handleUpdateLibro={handleUpdateLibro}/>
+                    handleUpdateLibro={handleUpdateLibro}
+                    data={props}
+                    />
             }
       <Button  variant="danger" onClick={()=>props.handleDeleteLibro(id)}
      >Eliminar</Button>

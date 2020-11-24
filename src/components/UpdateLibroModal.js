@@ -11,16 +11,25 @@ import GeneroService from "../services/GeneroService";
 import LibroService from "../services/LibroService";
 
 function UpdateLibroModal(props) {
-  const { show, handleClose } = props;
-
-  const [generos, setGeneros] = useState(null);
-  const [nombre, setNombre] = useState(null);
-  const [autor, setAutor] = useState(null);
-  const [publicacion, setPublicacion] = useState(null);
-  const [genero, setGenero] = useState(null);
-  const [paginas, setPaginas] = useState(null);
-  const [disponibilidad, setDisponibilidad] = useState(null);
-
+  const { show, handleClose,data } = props;
+  const strId = props.data.id;
+  const strNombre = props.data.nombre;
+  const strAutor = props.data.autor;
+  const strGenero = props.data.genero;
+  const strFecha = props.data.fecha;
+  const strPaginas = props.data.paginas;
+  const strDisponibilidad = props.data.disponibilidad;
+console.log(data);
+  const [generos, setGeneros] = useState();
+  const [id, setId] = useState(props.data.id);
+  const [nombre, setNombre] = useState(props.data.nombre);
+  const [autor, setAutor] = useState(props.data.autor);
+  const [publicacion, setPublicacion] = useState(props.data.fecha);
+  const [genero, setGenero] = useState(props.data.genero);
+  const [valueGenero, setValorGenero] = useState(genero); 
+  const [paginas, setPaginas] = useState(props.data.paginas);
+  const [disponibilidad, setDisponibilidad] = useState(props.data.disponibilidad);
+  const [valorDisponibilidad, setValorDisponibilidad] = useState(disponibilidad);
   useEffect(() => {
     GeneroService.get().then(
       (resp) => {
@@ -32,9 +41,16 @@ function UpdateLibroModal(props) {
       }
     );
   }, []);
-
-
-  
+/*
+   useEffect(()=>{
+    setNombre(strNombre)
+    setValorGenero(strGenero);
+    setValorDisponibilidad(strDisponibilidad)
+    setAutor(strAutor)
+    setPublicacion(strFecha)
+    setPaginas(strPaginas)
+  }) 
+  */
   const handleOnChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -44,6 +60,9 @@ function UpdateLibroModal(props) {
     console.log(name, value);
 
     switch (name) {
+      case "id":
+        setId(value ? value : null)
+        break;
       case "nombre":
         setNombre(value ? value : null);
         break;
@@ -78,6 +97,14 @@ function UpdateLibroModal(props) {
       </Modal.Header>
       <Modal.Body>
         <Form>
+        <FormGroup>
+            <FormLabel>ID</FormLabel>
+            <FormControl
+              name="ID"
+              onChange={(e) => handleOnChange(e)}
+              value={id ? id : ""}
+            />
+          </FormGroup>
           <FormGroup>
             <FormLabel>Nombre:</FormLabel>
             <FormControl
@@ -99,14 +126,14 @@ function UpdateLibroModal(props) {
             <FormControl
               name="genero"
               onChange={handleOnChange}
-              value={genero ? genero : ""}
+              value={genero ?  genero: ""}
               as="select"
             >
-              <option value="">Seleccione Genero</option>
+              <option value={valueGenero}>{valueGenero}</option>
               {generos &&
                 generos.length > 0 &&
                 generos.map((genero, index) => {
-                  return <option value={genero.id}>{genero.nombre}</option>;
+                  return <option value= {index} value={genero.id}>{genero.nombre}</option>;
                 })}
             </FormControl>
           </FormGroup>
@@ -144,13 +171,14 @@ function UpdateLibroModal(props) {
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
-          Cerrar
+          Cancelar
         </Button>
         <Button
                     variant="primary"
-                    onClick={() => props.handleUpdateLibro({
-                        nombre,
-                        autor,
+                      onClick={() => props.handleUpdateLibro({
+                        id : id,
+                        nombre : nombre,
+                        autor : autor,
                         publicacion,
                         paginas,
                         genero: {
@@ -159,7 +187,7 @@ function UpdateLibroModal(props) {
                         disponibilidad
                         
                     })}
-                    disabled={!nombre || !autor || !publicacion || !paginas
+                    disabled={!id || !nombre || !autor || !publicacion || !paginas
                         || !genero || !disponibilidad}>
                     Actualizar
           </Button>

@@ -35,8 +35,7 @@ const LibrosView = () => {
   };
 
   const handleDeleteLibro = (id) => {
-    LibroService.delete(id).then(
-      (resp) => {
+    LibroService.delete(id).then((resp) => {
         console.log(resp);
       },
       (err) => {
@@ -65,7 +64,8 @@ const LibrosView = () => {
        
         
         
-        <p>                          
+        <p> 
+          <br></br>                         
         <CardDeck key={index}>
          
           {libros 

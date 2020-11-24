@@ -13,8 +13,8 @@ class LibroService {
         return AxiosInstance.post('libro/create', libro);
     }
 
-    update(id) {
-        return AxiosInstance.put(`libro/update/${id}`);
+    update(id,libro) {
+        return AxiosInstance.update(`libro/update/${id}`, libro);
     }
 }
 
