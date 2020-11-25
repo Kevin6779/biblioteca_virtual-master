@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Button, Container } from "react-bootstrap";
 import CreateLibroModal from '../components/CreateLibroModal';
+import CreateReservaModal from '../components/CreateReservaModal';
 import LibroService from '../services/LibroService';
+import ReservaService from '../services/ReservaService';
+
 import Swal from 'sweetalert2';
 
 function AgregarLibroView() {
@@ -41,6 +44,7 @@ function AgregarLibroView() {
             });
         })
     }
+
 
     
 

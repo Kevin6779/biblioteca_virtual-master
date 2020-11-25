@@ -3,6 +3,8 @@ import { Card, Button } from "react-bootstrap";
 import Book from '../img/book.png'
 import UpdateLibroModal from '../components/UpdateLibroModal';
 import LibroService from '../services/LibroService';
+import CreateReservaModal from '../components/CreateReservaModal';
+import ReservaService from '../services/ReservaService';
 import Swal from 'sweetalert2';
 
 
@@ -13,6 +15,29 @@ function CardLibro(props) {
     useEffect(() => {
       console.log('nuevo estado');
   }, [show]);
+
+  const handleCreateReserva = (reserva) => {
+    Swal.fire({
+       
+        icon: 'success',
+        text: 'Reserva Exitosa'
+    });
+    
+    ReservaService.create(reserva)
+      .then((resp) => {
+        Swal.close();
+        console.log(resp);
+        handleClose();
+    }, (err) => {
+        Swal.close();
+        console.log(err);
+        Swal.fire({
+            title: 'Error Fatal',
+            icon: 'error',
+            text: 'Error realizando la  Reserva'
+        });
+    })
+}
 
     const handleUpdateLibro = (id,libro) => {      
       LibroService.update(id,libro).then((resp) => {        
@@ -38,8 +63,17 @@ function CardLibro(props) {
       <Card.Body>
         <Card.Title>{nombre}</Card.Title>
         <Card.Text>
-          <strong>ID: </strong>{id}
-          <p></p>
+        <Button  variant="primary" onClick={handleOpenModal} >Reservar</Button>
+        {
+          show && <CreateReservaModal
+          show={show}
+          handleClose={handleClose}
+          handleCreateReserva={handleCreateReserva}
+          />
+        }
+                <p></p>
+        <strong>ID: </strong> {id}
+        <p></p>
           <strong>Autor: </strong>{autor}
           <br/>
           <strong>Genero: </strong>{genero}

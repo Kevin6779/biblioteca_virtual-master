@@ -14,7 +14,7 @@ class LibroService {
     }
 
     update(id,libro) {
-        return AxiosInstance.update(`libro/update/${id}`, libro);
+        return AxiosInstance.put(`libro/update/${id}`, libro);
     }
 }
 
