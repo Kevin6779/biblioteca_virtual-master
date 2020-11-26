@@ -16,7 +16,7 @@ function CardLibro(props) {
       console.log('nuevo estado');
   }, [show]);
 
-  const handleCreateReserva = (reserva) => {
+  /*const handleCreateReserva = (reserva) => {
     Swal.fire({
        
         icon: 'success',
@@ -37,7 +37,7 @@ function CardLibro(props) {
             text: 'Error realizando la  Reserva'
         });
     })
-}
+}*/
 
     const handleUpdateLibro = (id,libro) => {      
       LibroService.update(id,libro).then((resp) => {        
@@ -56,21 +56,21 @@ function CardLibro(props) {
   const handleOpenModal = () => {
       setShow(true)
   }
-
+ /*{
+          show && <CreateReservaModal
+          show={show}
+          handleClose={handleClose}
+          handleCreateReserva={handleCreateReserva}
+          />
+        }*/
   return (
     <Card className="text-center"  border="dark" style={{ width: '18rem' }} >
       <Card.Img variant="top" src={Book} />
       <Card.Body>
         <Card.Title>{nombre}</Card.Title>
         <Card.Text>
-        <Button  variant="primary" onClick={handleOpenModal} >Reservar</Button>
-        {
-          show && <CreateReservaModal
-          show={show}
-          handleClose={handleClose}
-          handleCreateReserva={handleCreateReserva}
-          />
-        }
+        <Button  className="buttonCrud" variant="primary" onClick={handleOpenModal} >Reservar</Button>
+      
                 <p></p>
         <strong>ID: </strong> {id}
         <p></p>
@@ -86,8 +86,8 @@ function CardLibro(props) {
         </Card.Text>
       </Card.Body>
       <Card.Footer className="text-muted">
-      <Button  variant="dark" onClick={handleOpenModal}  
-     >Actualizar</Button>
+      <Button className="buttonCrud" variant="dark" onClick={handleOpenModal}  
+     >Actualizar</Button><p></p>
        {
                 show &&
                 <UpdateLibroModal
@@ -97,7 +97,7 @@ function CardLibro(props) {
                     data={props}
                     />
             }
-      <Button  variant="danger" onClick={()=>props.handleDeleteLibro(id)}
+      <Button className="buttonCrud" variant="danger" onClick={()=>props.handleDeleteLibro(id)}
      >Eliminar</Button>
       </Card.Footer>
     </Card>

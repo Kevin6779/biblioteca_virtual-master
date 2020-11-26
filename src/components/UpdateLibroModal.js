@@ -30,6 +30,7 @@ console.log(data);
   const [paginas, setPaginas] = useState(props.data.paginas);
   const [disponibilidad, setDisponibilidad] = useState(props.data.disponibilidad);
   const [valorDisponibilidad, setValorDisponibilidad] = useState(disponibilidad);
+
   useEffect(() => {
     GeneroService.get().then(
       (resp) => {
@@ -175,7 +176,7 @@ console.log(data);
         </Button>
         <Button
                     variant="primary"
-                      onClick={() => props.handleUpdateLibro({
+                      onClick={() => props.handleUpdateLibro(id,{
                         id : id,
                         nombre : nombre,
                         autor : autor,
