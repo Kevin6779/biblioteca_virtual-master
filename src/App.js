@@ -1,10 +1,10 @@
 import React from "react";
 import "./App.css";
-import { Navbar, Nav, Image } from "react-bootstrap";
+import { Navbar, Nav, Image} from "react-bootstrap";
 import HomeView from "./views/HomeView";
 import LibrosView from "./views/LibrosView";
 import AgregarLibroView from "./views/AgregarLibroView";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link , Form, FormControl, Button} from "react-router-dom";
 import Logo from './assets/Imagenes/logo1.jpg';
 function App() {
   return (

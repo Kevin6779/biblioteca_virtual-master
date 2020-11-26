@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, CardDeck } from "react-bootstrap";
+import { Container, Row, Col, CardDeck, Card, br} from "react-bootstrap";
 import LibroService from "../services/LibroService";
 import CardLibro from "../components/CardLibro";
 import Swal from 'sweetalert2';
@@ -46,7 +46,7 @@ const LibrosView = () => {
   
   const handledRenderLibros = () => {
     if (!libros || libros.length === 0) {
-      return <div>No existen datos</div>;
+      return <div></div>;
     }
     const columns = 4;
     let rows = Math.floor(libros.length / columns);
@@ -59,13 +59,16 @@ const LibrosView = () => {
     const arrayRows = [...Array(rows)];
     return arrayRows.map((row, index) => {
    
+      
+  
+
       return (
 
        
-        
-        
+        <Card className="card1" border="dark"><h5 className="text-center"><br></br>LIBROS DISPONIBLES</h5>
+        <Card.Body>
         <p> 
-          <br></br>                         
+                            
         <CardDeck key={index}>
          
           {libros 
@@ -89,7 +92,7 @@ const LibrosView = () => {
                 />
               );
             })}
-        </CardDeck></p>
+        </CardDeck></p></Card.Body></Card>
       );
     });
   };

@@ -1,9 +1,13 @@
 body {
-  background-color: #c2c2c2;
+  background-color: #8b8b8b;
 }
 
 .navbar-custom {
   background-color: #ffffff;
+}
+
+.card1 {
+  background-color: #c4c4c4;
 }
 
 .custom-link {
@@ -14,6 +18,15 @@ body {
 .custom-link:hover {
   color: #000000;
 }
+
+.newtext {
+  text-align: left;
+  text-decoration: none;
+  display: inline-block;
+  color: #000000;
+  margin: 3px;
+}
+
 
 .button {
   background-color: #4e4e4e;
