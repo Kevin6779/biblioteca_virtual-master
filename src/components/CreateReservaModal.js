@@ -68,6 +68,7 @@ function CreateReservaModal(props) {
         default:
         break;
   }
+  
   return (
     <Modal backdrop="static" show={show} onHide={handleClose}>
     <Modal.Header closeButton>
@@ -108,7 +109,7 @@ function CreateReservaModal(props) {
             </FormControl>
           </FormGroup>
         <FormGroup>
-          <FormLabel>Feche Inicio:</FormLabel>
+          <FormLabel>Fecha Inicio:</FormLabel>
           <FormControl
             name="fechaIni"
             onChange={handleOnChange}

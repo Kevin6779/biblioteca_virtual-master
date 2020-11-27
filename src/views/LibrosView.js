@@ -33,16 +33,30 @@ const LibrosView = () => {
       console.log(error);
     }
   };
+  
+    
+    
+  const handleDeleteLibro = async (id) => {
+    const respModal = await Swal.fire({
+      title: 'Borrar Libro',
+      icon: 'info',
+      text: '¿Seguro de que quiere eliminar el Libro?, esta acccion no podra revertirse',
+      showCancelButton: true,
+      confirmButtonText: 'SI',
+      cancelButtonText: 'NO'
+    });
 
-  const handleDeleteLibro = (id) => {
-    LibroService.delete(id).then((resp) => {
-        console.log(resp);
-      },
-      (err) => {
-        console.log("ERROR AL ELIMINAR ", err);
-      }
-    );
-  };
+    if (!respModal.value) {
+      return;
+  }
+
+  LibroService.delete(id).then(resp => {
+      console.log(resp);
+      handleGetLibro();
+  }, (err) => {
+      console.log('error al eliminar libro', err);
+  });
+}
   
   const handledRenderLibros = () => {
     if (!libros || libros.length === 0) {

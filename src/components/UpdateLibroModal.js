@@ -172,7 +172,7 @@ console.log(data);
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
-          Cancelar
+          Cerrar
         </Button>
         <Button
                     variant="primary"

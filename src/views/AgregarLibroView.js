@@ -22,28 +22,27 @@ function AgregarLibroView() {
         setShow(true)
     }
 
-    const handleSaveLibro = (libro) => {
-        Swal.fire({
-           
-            icon: 'success',
-            text: 'Libro Guardado'
-        });
+    const handleSaveLibro = async (libro) => {
+        const respModal = await Swal.fire({
+            title: 'Publicar Libro',
+            icon: 'info',
+            text: '¿Esta seguro de que quiere publicar un nuevo Libro?, esta acccion no podra revertirse',
+            showCancelButton: true,
+            confirmButtonText: 'SI',
+            cancelButtonText: 'NO'
+          });
+          if (!respModal.value) {
+            return;
+        }
         
-        LibroService.create(libro)
-          .then((resp) => {
-            Swal.close();
+        LibroService.create(libro).then(resp => {
             console.log(resp);
             handleClose();
         }, (err) => {
-            Swal.close();
-            console.log(err);
-            Swal.fire({
-                title: 'Error',
-                icon: 'error',
-                text: 'Error    '
-            });
-        })
-    }
+            console.log('error al publicar el libro', err);
+        });
+        }
+        
 
 
     
