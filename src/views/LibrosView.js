@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, CardDeck, Card, br} from "react-bootstrap";
+import { Container, Row, Col, CardDeck, Card, Image, Navbar} from "react-bootstrap";
 import LibroService from "../services/LibroService";
 import CardLibro from "../components/CardLibro";
 import Swal from 'sweetalert2';
-
+import twitter from '../assets/Imagenes/twitter.jpg';
+import facebook from '../assets/Imagenes/facebook.jpg';
+import googlePlus from '../assets/Imagenes/googlePlus.jpg';
 
 const LibrosView = () => {
   const [libros, setLibro] = useState(null);
@@ -110,7 +112,24 @@ const LibrosView = () => {
       );
     });
   };
-  return <Container>{handledRenderLibros()} </Container>;
+  return <Container>{handledRenderLibros()} 
+    <Card className="footer">
+  <Card.Body><h4>Siguenos en nuestras redes sociales</h4>
+  <p></p>
+  
+   <Navbar.Brand href="https://twitter.com/"className="custom-link">
+  <Image src={twitter} />
+  </Navbar.Brand>
+  <Navbar.Brand href="https://www.facebook.com/"className="custom-link"> 
+  <Image src={facebook} />
+  </Navbar.Brand>
+ 
+  <Navbar.Brand href="https://www.google.com/search?q=google+plus&hl=es&tbm=isch&source=iu&ictx=1&fir=Dc9etFG0K1EonM%252C9onwM-we8RMatM%252C%252Fm%252F0gh6xtp&vet=1&usg=AI4_-kTp5lxpozVGZ6AgNebugzAm4WhJNQ&sa=X&ved=2ahUKEwjiv8bWsaTtAhVOjlkKHUyGAGcQ_B16BAgrEAI&biw=1366&bih=657#imgrc=Dc9etFG0K1EonM"className="custom-link">
+  <Image src={googlePlus} />
+  </Navbar.Brand>        
+  </Card.Body>
+</Card>
+</Container>;
   /*  return (
     <div className="container">
        <div><ul>{ libros && libros.map((libro, index)=>{ 
