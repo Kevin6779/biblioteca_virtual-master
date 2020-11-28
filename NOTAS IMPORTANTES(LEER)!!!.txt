@@ -1,0 +1,10 @@
+INTEGRANTES: KEVIN HERRERA NUÑEZ & ANDRES GUTIERREZ
+
+Profe nosotros subimos el proyecto a git para que nos tenga en cuenta y nos
+suba la nota, mil Gracias!,
+
+IMPORTANTE!
+(
+Dentro de APACHE NETBEANS(SERVICIOS) va a encontrar la base de datos
+ completa y el codigo correspondiente en java. Feliz Dia (:
+)

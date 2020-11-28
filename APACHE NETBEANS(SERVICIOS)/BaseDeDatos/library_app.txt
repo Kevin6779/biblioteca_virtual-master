@@ -1,0 +1,76 @@
+create table rol(
+rol_id int not null,
+rol_usuario varchar(20) not null,
+primary key(rol_id)
+);
+
+create table usuario(
+cedula int 	unique not null,
+nombre varchar(25) not null,
+rol_id int not null,
+edad int not null,
+usuario varchar(60) unique not null,
+password varchar(32) not null,
+email varchar(25),
+primary key(cedula),
+FOREIGN KEY (rol_id) REFERENCES rol(rol_id) ON DELETE CASCADE
+);
+select*from libro
+create table genero(
+id_genero int not null,
+nombre varchar(20) not null,
+primary key(id_genero)
+);
+select*from libro
+create table libro(
+id_libro int not null auto_increment,
+nombre varchar(200) not null,
+autor varchar(25) not null,
+anio_publicacion date not null,
+id_genero int not null,
+cant_paginas int not null,
+diponibilidad boolean default false, -- por defecto es false // true = disp, false = no disp
+primary key(id_libro),
+FOREIGN KEY (id_genero) REFERENCES genero(id_genero) ON DELETE CASCADE
+);
+
+create table reserva(
+cod_reserva int not null auto_increment,
+cedula int not null,
+id_libro int not null,
+fecha_inicio date not null,
+fecha_fin date not null,
+primary key(cod_reserva),
+foreign key(cedula) references usuario(cedula) on delete cascade,
+foreign key(id_libro) references libro(id_libro) on delete cascade
+);
+-- INSERTS INICIALES
+-- ROLES
+insert into rol values(1,'Administrador')
+insert into rol values(0,'Usuario')
+-- USUARIOS
+-- administradores
+insert into usuario values (1001226099,'Kevin',1,20,'KevonManson','Enero123','kahn6779@gmail.com');
+insert into usuario values (1992836487,'Laura',1,23,'lil_Love','MyHome','laura@gmail.com');
+-- usuariosComunes
+insert into usuario values (384722638,'Brayan',0,15,'xXBrayan991Xx','Contraseña1','Brayan@gmail.com');
+insert into usuario values (388273947,'Raul',0,40,'StarUser','link','link@gmail.com');
+insert into usuario values (473482749,'Guillermo',0,32,'Pureta','guillermo','guillermo9@gmail.com');
+-- GENEROS
+insert into genero(id_genero, nombre) values (1, 'Aventura');
+insert into genero(id_genero, nombre) values (2, 'Terror');
+insert into genero(id_genero, nombre) values (3, 'Suspenso');
+insert into genero(id_genero, nombre) values (4, 'Comedia');
+insert into genero(id_genero, nombre) values (5, 'Fantasia');
+insert into genero(id_genero, nombre) values (6, 'Epico');
+-- LIBROS
+insert into libro values(1,'libro1','Moka','2020/10/13',1,1000,false);
+insert into libro values(2,'libro2','Kelly','2019/09/12',2,100,true);
+insert into libro values(3,'libro3','Master','2018/08/11',3,3000,true);
+insert into libro values(4,'libro4','maria','2017/07/10',4,1000,true);
+insert into libro values(5,'libro5','Angela','2016/07/09',5,1500,true);
+insert into libro values(11,'POST','Carlos','2015/06/08',6,2000,false);
+-- RESERVAS
+insert into reserva values(6,473482749,1,'2020/11/09','2020/11/13');
+insert into reserva values(2,388273947,4,'2020/11/10','2020/11/20');
+insert into reserva values(3,473482749,6,'2020/11/07','2020/11/15');
